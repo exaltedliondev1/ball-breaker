@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour
     //[SerializeField] private float speed = 20f;
     //[SerializeField] private bool startMoving = false;
     //Vector2 clickPosition;
-    public Transform Arrow;
+    
     void Start()
     {
         

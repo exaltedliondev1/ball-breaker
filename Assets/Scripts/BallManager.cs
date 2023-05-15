@@ -9,27 +9,39 @@ public class BallManager : MonoBehaviour
     [SerializeField] private int noOfBalls = 5;
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private Transform spawnPos;
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private int counter = 0;
-                    
-    
+    [SerializeField] private float speed = 70f;
+    public int detectBall;
+    public Transform Arrow;
+
+
     private void Awake()
     {
         Instance = this;
     }
     void Start()
     {
-        balls = new GameObject[noOfBalls];
-       
+
+        SetUpBalls();
     }
 
     
     void Update()
     {
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Arrow.LookAt(heldPosition, new Vector3(0, 0, 1));
+        }
+
+
+
+
+
+
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 moveDirection = (clickPosition - transform.position).normalized;
+            Vector2 moveDirection = (clickPosition - spawnPos.position).normalized;
             for (int i = 0; i < noOfBalls; i++)
             {
                 GameObject ball = Instantiate(ballPrefab, spawnPos.position, Quaternion.identity);
@@ -60,12 +72,23 @@ public class BallManager : MonoBehaviour
 
     }
 
-    public void SetSpawnPosition(Transform position)
+    public void SetSpawnPosition(Transform BallTransform)
     {
-        if(counter == 1)
+        if(detectBall == 1)
         {
+            spawnPos.position = BallTransform.position;
+        }
+        else if(detectBall == noOfBalls)
+        {
+            SetUpBalls();
+            detectBall = 0;
 
         }
       
+    }
+
+    public void SetUpBalls()
+    {
+        balls = new GameObject[noOfBalls];
     }
 }

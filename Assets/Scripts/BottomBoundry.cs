@@ -8,7 +8,10 @@ public class BottomBoundry : MonoBehaviour
     {
         if(other.gameObject.tag == "Ball")
         {
-            Vector3 position = other.transform.position;
+            BallManager.Instance.detectBall++;           
+            Transform position = other.transform;
+            BallManager.Instance.SetSpawnPosition(position);
+            Destroy(other.gameObject);
             
             
         }
