@@ -49,10 +49,12 @@ public class Ball : MonoBehaviour
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = velocity;       
     }
-    public void VelocityOnCollision(Vector2 velocity)
+    public void ForceOnCollision(Vector2 velocity)
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity += velocity;
+        rigidbody.AddForce(velocity);
+        Debug.Log(velocity);
+            
 
 
     }

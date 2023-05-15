@@ -8,10 +8,11 @@ public class BallManager : MonoBehaviour
     [SerializeField] private GameObject[] balls;
     [SerializeField] private int noOfBalls = 5;
     [SerializeField] private GameObject ballPrefab;
-    [SerializeField] private Transform spawnPos;
+    [SerializeField] private GameObject spawnPos;
     [SerializeField] private float speed = 70f;
     public int detectBall;
     public Transform Arrow;
+    public bool clickEnable = true;
 
 
     private void Awake()
@@ -38,14 +39,14 @@ public class BallManager : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && clickEnable==true)
         {
+            clickEnable = false;
             Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 moveDirection = (clickPosition - spawnPos.position).normalized;
+            Vector2 moveDirection = (clickPosition - spawnPos.transform.position).normalized;
             for (int i = 0; i < noOfBalls; i++)
             {
-                GameObject ball = Instantiate(ballPrefab, spawnPos.position, Quaternion.identity);
-                Debug.Log(spawnPos.position);
+                GameObject ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity);
                 balls[i] = ball;
             }
             StartCoroutine(MoveBall(moveDirection));
@@ -55,8 +56,24 @@ public class BallManager : MonoBehaviour
 
     IEnumerator MoveBall(Vector2 moveDirection)
     {
-        
-        foreach(GameObject ball in balls)
+        for (int i = 0; i < noOfBalls; i++)
+        {
+            Vector2 velocity = moveDirection * speed;
+            Ball balli = balls[i].GetComponent<Ball>();
+            if (balli != null)
+            {
+                balli.VelocityOnClick(velocity);
+            }
+            if (i == noOfBalls - 1)
+            {
+                spawnPos.SetActive(false);
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+
+
+
+        /*foreach(GameObject ball in balls)
         {
             Vector2 velocity = moveDirection * speed;
             Ball balli = ball.GetComponent<Ball>();
@@ -65,10 +82,7 @@ public class BallManager : MonoBehaviour
                 balli.VelocityOnClick(velocity);
             }
             yield return new WaitForSeconds(0.5f);
-
-
-
-        }
+        }*/
 
     }
 
@@ -76,14 +90,18 @@ public class BallManager : MonoBehaviour
     {
         if(detectBall == 1)
         {
-            spawnPos.position = BallTransform.position;
+            spawnPos.transform.position = BallTransform.position;
+            spawnPos.SetActive(true);
+            Arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else if(detectBall == noOfBalls)
         {
             SetUpBalls();
             detectBall = 0;
+            clickEnable = true;
 
         }
+        
       
     }
 
