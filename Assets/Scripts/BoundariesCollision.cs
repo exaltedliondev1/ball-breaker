@@ -13,5 +13,6 @@ public class BoundariesCollision : MonoBehaviour
         {
             colliderBall.ForceOnCollision(new Vector2(Random.Range(minForce,maxForce),Random.Range(minForce,maxForce)));
         }
+        //Done
     }
 }

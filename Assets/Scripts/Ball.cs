@@ -15,32 +15,7 @@ public class Ball : MonoBehaviour
     }
 
 
-    /*void Update()
-    {
-         ArrowRotation();
-        PlayerVeclocity();
-
-    }
-
-    void PlayerVeclocity()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            
-            Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 moveDirection = (clickPosition - transform.position).normalized;
-            myRigidBody.velocity = moveDirection * speed;
-        }
-    }
-
-    void ArrowRotation()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 arrowPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Arrow.LookAt(arrowPos, new Vector3(0, 0, 1));
-        }
-    }*/
+   
 
     
 

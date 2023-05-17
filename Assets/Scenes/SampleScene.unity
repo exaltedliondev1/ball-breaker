@@ -285,6 +285,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 1383781248}
+  - {fileID: 499435265}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -360,6 +361,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxForce: 0.5
   minForce: 0.2
+--- !u!1 &499435264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499435265}
+  - component: {fileID: 499435267}
+  - component: {fileID: 499435266}
+  m_Layer: 0
+  m_Name: BallText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &499435265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499435264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.27, y: 1.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 55089223}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!102 &499435266
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499435264}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 0.4
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &499435267
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499435264}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561434872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.59, z: 0}
+  m_LocalPosition: {x: 0, y: 5.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1029160308}
@@ -800,20 +896,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.data[9].b
-      value: 0.29699183
-      objectReference: {fileID: 0}
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.data[9].g
-      value: 0.29699183
-      objectReference: {fileID: 0}
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.data[9].r
-      value: 0.8867924
+      propertyPath: blockHealth
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3150668113360028364, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
       propertyPath: m_Name
@@ -1184,10 +1268,12 @@ MonoBehaviour:
   noOfBalls: 5
   ballPrefab: {fileID: 3704144202163914186, guid: fdc5fc4d5ae69e0469379dd7008a140f, type: 3}
   spawnPos: {fileID: 55089221}
-  speed: 20
+  speed: 30
   detectBall: 0
   Arrow: {fileID: 1383781248}
   clickEnable: 1
+  ballText: {fileID: 499435266}
+  ballScore: 0
 --- !u!1001 &3150668113976745267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1195,22 +1281,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.data[9].b
-      value: 0.8867924
-      objectReference: {fileID: 0}
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.data[9].g
-      value: 0.47119066
-      objectReference: {fileID: 0}
-    - target: {fileID: -7443127683283571293, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: colors.Array.data[9].r
-      value: 0.11294055
-      objectReference: {fileID: 0}
     - target: {fileID: 3150668113360028364, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
       propertyPath: m_Name
       value: ButtonNormal
@@ -1258,18 +1328,6 @@ PrefabInstance:
     - target: {fileID: 3150668113360043314, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150668113360043315, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150668113360043315, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3150668113360043315, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76387b068d7fcfa4f9ed41de1ebf2af0, type: 3}

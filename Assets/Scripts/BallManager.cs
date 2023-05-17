@@ -13,33 +13,41 @@ public class BallManager : MonoBehaviour
     public int detectBall;
     public Transform Arrow;
     public bool clickEnable = true;
-
+    public TextMesh ballText;
+    public int ballScore;
 
     private void Awake()
     {
         Instance = this;
     }
+
+
+
+
     void Start()
     {
 
         SetUpBalls();
+        SetUpScoreText(noOfBalls);
     }
+
+
 
     
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Arrow.LookAt(heldPosition, new Vector3(0, 0, 1));
-        }
+        ArrowRotation();
+        BallMovement();
+    }
 
 
 
 
 
 
-        if (Input.GetMouseButtonUp(0) && clickEnable==true)
+     void BallMovement()
+    {
+        if (Input.GetMouseButtonUp(0) && clickEnable == true)
         {
             clickEnable = false;
             Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,6 +61,14 @@ public class BallManager : MonoBehaviour
         }
     }
 
+    void ArrowRotation()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Arrow.LookAt(heldPosition, new Vector3(0, 0, 1));
+        }
+    }
 
     IEnumerator MoveBall(Vector2 moveDirection)
     {
@@ -68,22 +84,12 @@ public class BallManager : MonoBehaviour
             {
                 spawnPos.SetActive(false);
             }
-            yield return new WaitForSeconds(0.5f);
+            ballScore--;
+            SetUpScoreText(ballScore);
+            yield return new WaitForSeconds(0.4f);
         }
 
-
-
-        /*foreach(GameObject ball in balls)
-        {
-            Vector2 velocity = moveDirection * speed;
-            Ball balli = ball.GetComponent<Ball>();
-            if (balli != null)
-            {
-                balli.VelocityOnClick(velocity);
-            }
-            yield return new WaitForSeconds(0.5f);
-        }*/
-
+        
     }
 
     public void SetSpawnPosition(Transform BallTransform)
@@ -97,8 +103,11 @@ public class BallManager : MonoBehaviour
         else if(detectBall == noOfBalls)
         {
             SetUpBalls();
+            ballScore = detectBall;
+            SetUpScoreText(ballScore);
             detectBall = 0;
             clickEnable = true;
+           
 
         }
         
@@ -108,5 +117,10 @@ public class BallManager : MonoBehaviour
     public void SetUpBalls()
     {
         balls = new GameObject[noOfBalls];
+    }
+    public void SetUpScoreText(int noOfBalls)
+    {
+        ballText.text = "x" +" "+ noOfBalls.ToString();
+        ballScore = noOfBalls;
     }
 }

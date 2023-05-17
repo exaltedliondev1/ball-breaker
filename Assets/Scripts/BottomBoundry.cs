@@ -12,7 +12,7 @@ public class BottomBoundry : MonoBehaviour
             Transform position = other.transform;
             BallManager.Instance.SetSpawnPosition(position);
             Destroy(other.gameObject);
-            
+            //
             
         }
     }
