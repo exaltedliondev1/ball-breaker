@@ -50,6 +50,7 @@ public class BallManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && clickEnable == true)
         {
             clickEnable = false;
+            spawnPos.SetActive(false);
             Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 moveDirection = (clickPosition - spawnPos.transform.position).normalized;
             for (int i = 0; i < noOfBalls; i++)
@@ -80,10 +81,10 @@ public class BallManager : MonoBehaviour
             {
                 balli.VelocityOnClick(velocity);
             }
-            if (i == noOfBalls - 1)
+           /* if (i == noOfBalls - 1)
             {
                 spawnPos.SetActive(false);
-            }
+            }*/
             ballScore--;
             SetUpScoreText(ballScore);
             yield return new WaitForSeconds(0.4f);
@@ -96,8 +97,9 @@ public class BallManager : MonoBehaviour
     {
         if(detectBall == 1)
         {
-            spawnPos.transform.position = BallTransform.position;
             spawnPos.SetActive(true);
+            spawnPos.transform.position = BallTransform.position;     
+            Debug.Log("Called");
             Arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else if(detectBall == noOfBalls)

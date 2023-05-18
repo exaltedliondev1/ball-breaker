@@ -8,11 +8,14 @@ public class BottomBoundry : MonoBehaviour
     {
         if(other.gameObject.tag == "Ball")
         {
-            BallManager.Instance.detectBall++;           
+            Ball balli = other.gameObject.GetComponent<Ball>();
+            int ballcount = BallManager.Instance.detectBall++;
+            
+            
             Transform position = other.transform;
             BallManager.Instance.SetSpawnPosition(position);
             Destroy(other.gameObject);
-            //
+            
             
         }
     }

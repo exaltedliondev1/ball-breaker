@@ -10,13 +10,20 @@ public class Block : MonoBehaviour
     public Color[] colors;
     public float minForce= 0.2f;
     public float maxForce= 0.5f;
+    public TextMesh healthText;
 
+
+     void Start()
+    {
+        healthText.text = blockHealth.ToString();
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Ball")
         {
             blockHealth--;
+            healthText.text = blockHealth.ToString();
             if (blockHealth == 50)
             {
                 SpriteRenderer spriteRenderer = this.GetComponent<SpriteRenderer>();
@@ -50,5 +57,5 @@ public class Block : MonoBehaviour
             }
         }
     }
-    //Done here
+    
 }

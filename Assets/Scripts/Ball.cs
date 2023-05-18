@@ -9,11 +9,7 @@ public class Ball : MonoBehaviour
     //[SerializeField] private bool startMoving = false;
     //Vector2 clickPosition;
     
-    void Start()
-    {
-        
-    }
-
+  
 
    
 
@@ -27,11 +23,12 @@ public class Ball : MonoBehaviour
     public void ForceOnCollision(Vector2 velocity)
     {
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(velocity);
-        Debug.Log(velocity);
-            
+        rigidbody.AddForce(velocity);        
 
-
+    }
+    public void MoveTowardSpawnPos(Transform spawnPos)
+    {
+        transform.Translate(spawnPos.position * Time.deltaTime);
     }
     
 }
