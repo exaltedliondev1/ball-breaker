@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
+
     public static BallManager Instance;
     [SerializeField] private GameObject[] balls;
-    [SerializeField] private int noOfBalls = 5;
+    [SerializeField] public int noOfBalls = 5;
     [SerializeField] private GameObject ballPrefab;
-    [SerializeField] private GameObject spawnPos;
+    [SerializeField] public GameObject spawnPos;
     [SerializeField] private float speed = 70f;
     public int detectBall;
     public Transform Arrow;
     public bool clickEnable = true;
-    public TextMesh ballText;
+    public GameObject ballText;
     public int ballScore;
 
     private void Awake()
@@ -81,11 +82,12 @@ public class BallManager : MonoBehaviour
             {
                 balli.VelocityOnClick(velocity);
             }
-           /* if (i == noOfBalls - 1)
-            {
-                spawnPos.SetActive(false);
-            }*/
+          
             ballScore--;
+            if(ballScore == 0)
+            {
+                ballText.SetActive(false);
+            }
             SetUpScoreText(ballScore);
             yield return new WaitForSeconds(0.4f);
         }
@@ -93,36 +95,42 @@ public class BallManager : MonoBehaviour
         
     }
 
-    public void SetSpawnPosition(Transform BallTransform)
+    public void SetSpawnPosition(GameObject BallObject)
     {
         if(detectBall == 1)
         {
             spawnPos.SetActive(true);
-            spawnPos.transform.position = BallTransform.position;     
-            Debug.Log("Called");
+            spawnPos.transform.position = BallObject.transform.position;
+            ballText.transform.position = BallObject.transform.position+ new Vector3(0.2f,0.3f,0);
+            //Destroy(BallObject);
             Arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
+       
         else if(detectBall == noOfBalls)
         {
+            
             SetUpBalls();
             ballScore = detectBall;
             SetUpScoreText(ballScore);
             detectBall = 0;
             clickEnable = true;
-           
-
-        }
-        
-      
+            ballText.SetActive(true);
+        } 
     }
-
+    
     public void SetUpBalls()
     {
         balls = new GameObject[noOfBalls];
     }
+
+    public void MoveTowardSpawn(GameObject ball)
+    {
+        ball.transform.Translate(spawnPos.transform.position*5*Time.deltaTime);
+    }
     public void SetUpScoreText(int noOfBalls)
     {
-        ballText.text = "x" +" "+ noOfBalls.ToString();
+        TextMesh Text = ballText.GetComponent<TextMesh>(); 
+        Text.text = "x" + " " + noOfBalls.ToString();
         ballScore = noOfBalls;
     }
 }

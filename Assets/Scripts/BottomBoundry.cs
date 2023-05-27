@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,13 @@ public class BottomBoundry : MonoBehaviour
         if(other.gameObject.tag == "Ball")
         {
             Ball balli = other.gameObject.GetComponent<Ball>();
-            int ballcount = BallManager.Instance.detectBall++;
-            
-            
-            Transform position = other.transform;
-            BallManager.Instance.SetSpawnPosition(position);
-            Destroy(other.gameObject);
-            
-            
+            int ballcount = BallManager.Instance.detectBall++;            
+            BallManager.Instance.SetSpawnPosition(other.gameObject);
+            GameObject spawnPos = BallManager.Instance.spawnPos;
+            balli.StartMoving(spawnPos.transform);
+            //Destroy(other.gameObject);
         }
     }
+
+   
 }

@@ -4,25 +4,45 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    //Rigidbody2D myRigidBody;
-    //[SerializeField] private float speed = 20f;
-    //[SerializeField] private bool startMoving = false;
-    //Vector2 clickPosition;
-    
-  
+    bool isMoving = false;
+    Rigidbody2D rigidbody;
+    CircleCollider2D collider;
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CircleCollider2D>();
+    }
+    private void Update()
+    {
+        if (isMoving) {
+            transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * 5f);
+            float distance = Vector3.Distance(transform.position, target.position);
+            if (distance < 0.1f)
+            {
+                isMoving = false;
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
-   
 
-    
+    Transform target;
+    public void StartMoving(Transform target)
+    {
+        rigidbody.bodyType = RigidbodyType2D.Static;
+        collider.enabled = false;
+        this.target = target;
+        isMoving = true;
+    }
 
     public void VelocityOnClick(Vector2 velocity)
     {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.velocity = velocity;       
     }
     public void ForceOnCollision(Vector2 velocity)
     {
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.AddForce(velocity);        
 
     }
