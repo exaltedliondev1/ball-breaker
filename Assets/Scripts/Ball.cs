@@ -7,6 +7,17 @@ public class Ball : MonoBehaviour
     bool isMoving = false;
     Rigidbody2D rigidbody;
     CircleCollider2D collider;
+
+    private void Start()
+    {
+        //Invoke("Destry", 1);
+    }
+
+    void Destry() {
+        Destroy(gameObject);
+    }
+
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -38,18 +49,15 @@ public class Ball : MonoBehaviour
     public void VelocityOnClick(Vector2 velocity)
     {
          rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = velocity;       
+         rigidbody.velocity = velocity;       
     }
     public void ForceOnCollision(Vector2 velocity)
     {
          rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(velocity);        
+         rigidbody.AddForce(velocity);        
 
     }
-    public void MoveTowardSpawnPos(Transform spawnPos)
-    {
-        transform.Translate(spawnPos.position * Time.deltaTime);
-    }
+   
     
 }
 
