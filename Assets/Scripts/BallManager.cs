@@ -8,23 +8,28 @@ public class BallManager : MonoBehaviour
 
     public static BallManager Instance;
     [SerializeField] private GameObject[] balls;
+  //[SerializeField] List<GameObject> balls = new List<GameObject>();
     [SerializeField] public int noOfBalls = 5;
+    [SerializeField] public int addBall;
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] public GameObject spawnPos;
     [SerializeField] private float speed = 70f;
-    public float delay = 0.4f;
+    public float delay = 0.2f;
     public int detectBall;
     public Transform Arrow;
     public bool clickEnable = true;
     public GameObject ballText;
     public int ballScore;
-    //public List<Transform> trajectoryDots;
-    public int numberOfDots;
-   // public GameObject dotPrefab;
+   
+        
+    
+   
     public LineRenderer lineRenderer1;
     public LineRenderer lineRenderer2;
     private Ray2D ray;
     private RaycastHit2D hit;
+    public float length = 3f;
+    Vector2 reflection;
 
     private void Awake()
     {
@@ -52,7 +57,7 @@ public class BallManager : MonoBehaviour
     {
         ArrowRotation();
         BallMovement();
-        GenerateLine();
+       
     }
 
 
@@ -64,17 +69,19 @@ public class BallManager : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0) && clickEnable == true)
         {
+            SetNoOfBalls();
             lineRenderer1.enabled = false;
             lineRenderer2.enabled = false;
 
             clickEnable = false;
             spawnPos.SetActive(false);
-            Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 moveDirection = (clickPosition - spawnPos.transform.position).normalized;
+            Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 moveDirection = (clickPosition - (Vector2)spawnPos.transform.position).normalized;
             for (int i = 0; i < noOfBalls; i++)
             {
                 GameObject ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity);
                 balls[i] = ball;
+                
             }
             StartCoroutine(MoveBall(moveDirection));
         }
@@ -82,13 +89,13 @@ public class BallManager : MonoBehaviour
 
     void ArrowRotation()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&& clickEnable==true)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPos.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
             Arrow.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
-            lineRenderer1.enabled = true;
-            lineRenderer2.enabled = true;
+           
+            GenerateLine();
            
         }
     }
@@ -97,13 +104,13 @@ public class BallManager : MonoBehaviour
     {
         for (int i = 0; i < noOfBalls; i++)
         {
-            Vector2 velocity = moveDirection * speed;
+            Vector2 direction = moveDirection*speed;
             if (balls[i] != null)
             {
                 Ball balli = balls[i].GetComponent<Ball>();
                 if (balli != null)
                 {
-                    balli.VelocityOnClick(velocity);
+                    balli.VelocityOnClick(direction);
                 }
 
                 ballScore--;
@@ -126,7 +133,6 @@ public class BallManager : MonoBehaviour
             spawnPos.SetActive(true);
             spawnPos.transform.position = BallObject.transform.position;
             ballText.transform.position = BallObject.transform.position + new Vector3(0.2f, 0.3f, 0);
-            //Destroy(BallObject);
             Arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -159,39 +165,44 @@ public class BallManager : MonoBehaviour
     }
 
 
-
     void GenerateLine()
-    {       
-        lineRenderer1.positionCount = 1;
-        lineRenderer1.SetPosition(0, spawnPos.transform.position);
-        float length = 50f;
-
-       
-            hit = Physics2D.Raycast(spawnPos.transform.position, spawnPos.transform.up,length);
-            if (hit.collider != null)
-            {
-                lineRenderer1.positionCount = 2;
-                lineRenderer1.SetPosition(lineRenderer1.positionCount - 1, hit.point);
-                ray = new Ray2D(hit.point, Vector2.Reflect(ray.direction, hit.normal));
-
-                lineRenderer2.positionCount = 1;
-                lineRenderer2.SetPosition(0, hit.point);
-                lineRenderer2.positionCount = 2;
-                lineRenderer2.SetPosition(1,ray.direction);
-            }
-            else
-            {
-                lineRenderer1.positionCount += 1;
-                lineRenderer1.SetPosition(lineRenderer1.positionCount - 1, spawnPos.transform.position + spawnPos.transform.up * 3);
-            }
+    {
         
-       
+        hit = Physics2D.Raycast(spawnPos.transform.position, spawnPos.transform.up);
+
+        Vector2 pt1 = spawnPos.transform.position + spawnPos.transform.up;
+        if (hit.collider != null)
+        {
+
+         
+
+            reflection = Vector2.Reflect(spawnPos.transform.up, hit.normal);
+            lineRenderer1.enabled = true;
+            lineRenderer1.positionCount = 1;
+            lineRenderer1.SetPosition(0, spawnPos.transform.position);
+            lineRenderer1.positionCount = 2;
+            lineRenderer1.SetPosition(lineRenderer1.positionCount - 1, hit.point);
+            lineRenderer2.enabled = true;
+            lineRenderer2.positionCount = 1;
+            lineRenderer2.SetPosition(0, hit.point);
+            lineRenderer2.positionCount = 2;
+            lineRenderer2.SetPosition(1, hit.point+reflection*2);
+
+        }
+        else
+        {
+           
+            lineRenderer1.positionCount = 2;
+            lineRenderer2.enabled = false; 
+            lineRenderer1.SetPosition(lineRenderer1.positionCount - 1,pt1);
+        }
     }
     
-
-     
-
-
+    public void SetNoOfBalls()
+    {
+        noOfBalls += addBall;
+        addBall = 0;
+    }
 }
 
 

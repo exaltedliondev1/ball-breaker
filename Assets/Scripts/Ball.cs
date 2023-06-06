@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     bool isMoving = false;
     Rigidbody2D rigidbody;
     CircleCollider2D collider;
+    
 
     private void Start()
     {
@@ -46,17 +47,12 @@ public class Ball : MonoBehaviour
         isMoving = true;
     }
 
-    public void VelocityOnClick(Vector2 velocity)
+    public void VelocityOnClick(Vector2 direction)
     {
-         rigidbody = GetComponent<Rigidbody2D>();
-         rigidbody.velocity = velocity;       
+         
+         rigidbody.velocity = direction;       
     }
-    public void ForceOnCollision(Vector2 velocity)
-    {
-         rigidbody = GetComponent<Rigidbody2D>();
-         rigidbody.AddForce(velocity);        
-
-    }
+   
    
     
 }

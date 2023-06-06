@@ -53,12 +53,15 @@
     <UnityVersion>2020.3.40f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Block.cs" />
     <Compile Include="Assets\Scripts\TrajectoryLine.cs" />
     <Compile Include="Assets\Scripts\BottomBoundry.cs" />
     <Compile Include="Assets\Scripts\BallManager.cs" />
+    <Compile Include="Assets\square.cs" />
+    <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
-    <Compile Include="Assets\Scripts\BoundariesCollision.cs" />
+    <Compile Include="Assets\Scripts\AddBall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HONETi\TexturesThemeCommon\Fonts\OFL.txt" />
