@@ -59,9 +59,10 @@
     <Compile Include="Assets\Scripts\BottomBoundry.cs" />
     <Compile Include="Assets\Scripts\BallManager.cs" />
     <Compile Include="Assets\square.cs" />
+    <Compile Include="Assets\Scripts\AddBall.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
-    <Compile Include="Assets\Scripts\AddBall.cs" />
+    <Compile Include="Assets\GameArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HONETi\TexturesThemeCommon\Fonts\OFL.txt" />

@@ -10,6 +10,7 @@ public class Block : MonoBehaviour
     //public Color[] borderColors;
     public TextMesh healthText;
     public SpriteRenderer spriteRenderer;
+    public GameObject prefab;
    // public SpriteRenderer borderRenderer;
 
 
@@ -57,7 +58,7 @@ public class Block : MonoBehaviour
             }
             else if (blockHealth <= 0)
             {
-                Destroy(this.gameObject);
+                Destroy(prefab);
             }
             
            

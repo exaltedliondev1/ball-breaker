@@ -8,7 +8,6 @@ public class BallManager : MonoBehaviour
 
     public static BallManager Instance;
     [SerializeField] private GameObject[] balls;
-  //[SerializeField] List<GameObject> balls = new List<GameObject>();
     [SerializeField] public int noOfBalls = 5;
     [SerializeField] public int addBall;
     [SerializeField] private GameObject ballPrefab;
@@ -55,7 +54,7 @@ public class BallManager : MonoBehaviour
 
     void Update()
     {
-        ArrowRotation();
+        //ArrowRotation();
         BallMovement();
        
     }
@@ -87,18 +86,36 @@ public class BallManager : MonoBehaviour
         }
     }
 
-    void ArrowRotation()
+    /*void ArrowRotation()
     {
         if (Input.GetMouseButton(0)&& clickEnable==true)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          
             spawnPos.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
             Arrow.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
            
             GenerateLine();
            
         }
+    }*/
+
+    
+    public void ArrowRotation(Vector3 heldPosition)
+    {
+        if (clickEnable == true)
+        {
+            
+
+            spawnPos.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
+            Arrow.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
+
+            GenerateLine();
+
+        }
     }
+
+
 
     IEnumerator MoveBall(Vector2 moveDirection)
     {
