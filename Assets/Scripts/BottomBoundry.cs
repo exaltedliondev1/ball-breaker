@@ -14,7 +14,7 @@ public class BottomBoundry : MonoBehaviour
             BallManager.Instance.SetSpawnPosition(other.gameObject);
             GameObject spawnPos = BallManager.Instance.spawnPos;
             balli.StartMoving(spawnPos.transform);
-            //Destroy(other.gameObject);
+            
         }
     }
 

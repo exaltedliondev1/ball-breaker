@@ -3,41 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GameArea : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class GameArea : MonoBehaviour
 {
-  
+    public bool isHeldDown;
 
+   
 
-    private bool isMouseButtonHeld;
-
-    public void OnPointerDown(PointerEventData eventData)
+    void OnMouseExit()
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            isMouseButtonHeld = true;
-            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            BallManager.Instance.clickEnable = true;
-            BallManager.Instance.ArrowRotation(heldPosition);
-        }
+        isHeldDown = false;
+        BallManager.Instance.SetLineOff();
+    }
+    void OnMouseEnter()
+    {
+
+        isHeldDown = true;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            // Left mouse button is released
-            //isMouseButtonHeld = false;
-        }
-    }
 
     void Update()
     {
-        if (isMouseButtonHeld)
+
+        
+
+        if(Input.GetMouseButton(0)&& isHeldDown == true)
+        {
+
+            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            BallManager.Instance.ArrowRotation(heldPosition);
+        }
+     
+        if(Input.GetMouseButtonUp(0)&& isHeldDown == true)
         {
             
+            BallManager.Instance.BallMovement();
         }
+
     }
 }
+
+
+
 
 
 // On pointer down per isMouseButtonHeld true hoga ball manager ka;
