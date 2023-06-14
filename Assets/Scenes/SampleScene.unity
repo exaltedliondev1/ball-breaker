@@ -363,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55089221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.171, y: -3.55, z: 0}
+  m_LocalPosition: {x: 0, y: -3.55, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_Children:
   - {fileID: 1383781248}
@@ -11210,7 +11210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1632497162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13033,6 +13033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881037712}
   - component: {fileID: 1881037713}
+  - component: {fileID: 1881037714}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -13106,13 +13107,26 @@ MonoBehaviour:
   m_FillRect: {fileID: 1270681156}
   m_HandleRect: {fileID: 567178131}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 80
   m_WholeNumbers: 0
-  m_Value: 0.298
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1881037714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881037711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465c5ca0f6503b54f89a0b3d176819ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1881037713}
 --- !u!1 &1881917406
 GameObject:
   m_ObjectHideFlags: 0
@@ -14405,6 +14419,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  rotation: 0
 --- !u!1 &2090390440
 GameObject:
   m_ObjectHideFlags: 0

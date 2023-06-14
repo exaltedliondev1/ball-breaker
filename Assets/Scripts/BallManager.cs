@@ -59,7 +59,7 @@ public class BallManager : MonoBehaviour
     {
         //ArrowRotation();
         //BallMovement();
-       
+        //ArrowRotate(rotation);
     }
 
 
@@ -119,7 +119,14 @@ public class BallManager : MonoBehaviour
 
     }
 
-
+    public float rotation;
+    public void ArrowRotateOnSlider(float rotationValue)
+    {
+        this.rotation = rotationValue;
+        spawnPos.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        Arrow.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        GenerateLine();
+    }
 
 
     public void BallMovement()
