@@ -7,8 +7,9 @@ public class BallManager : MonoBehaviour
 {
 
     public static BallManager Instance;
-    [SerializeField] private GameObject[] balls;
-    [SerializeField] public int noOfBalls = 5;
+   // [SerializeField] private GameObject[] balls;
+    [SerializeField] private List<GameObject> ballList;
+    [SerializeField] public int noOfBalls = 10;
 
 
 
@@ -51,58 +52,8 @@ public class BallManager : MonoBehaviour
         SetLineOff();
         
     }
-
-
-
-
-    void Update()
-    {
-        //ArrowRotation();
-        //BallMovement();
-        //ArrowRotate(rotation);
-    }
-
-
-
-
-
-
-    /* public void BallMovement()
-     {
-         if (Input.GetMouseButtonUp(0) && clickEnable == true)
-         {
-             SetNoOfBalls();
-             lineRenderer1.enabled = false;
-             lineRenderer2.enabled = false;
-
-             clickEnable = false;
-             spawnPos.SetActive(false);
-             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-             Vector2 moveDirection = (clickPosition - (Vector2)spawnPos.transform.position).normalized;
-             for (int i = 0; i < noOfBalls; i++)
-             {
-                 GameObject ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity);
-                 balls[i] = ball;
-
-             }
-             StartCoroutine(MoveBall(moveDirection));
-         }
-     }*/
-
-    /*void ArrowRotation()
-    {
-        if (Input.GetMouseButton(0)&& clickEnable==true)
-        {
-            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-          
-            spawnPos.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
-            Arrow.transform.LookAt(heldPosition, new Vector3(0, 0, 1));
-           
-            GenerateLine();
-           
-        }
-    }*/
-
+    
+    /*===================================================== ArrowRotation ===================================*/
     public void ArrowRotation(Vector3 heldPosition)
     {
 
@@ -128,16 +79,13 @@ public class BallManager : MonoBehaviour
         GenerateLine();
     }
 
-
+    /*========================================== BallMovement =================================================*/
     public void BallMovement()
-    {
-        
+    {        
         if(clickEnable == true)
         {
-
             SetNoOfBalls();
             SetLineOff();
-
             clickEnable = false;
             spawnPos.SetActive(false);
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -145,24 +93,41 @@ public class BallManager : MonoBehaviour
             for (int i = 0; i < noOfBalls; i++)
             {
                 GameObject ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity);
-                balls[i] = ball;
-
+                // balls[i] = ball;
+                ballList.Add(ball);
             }
             StartCoroutine(MoveBall(moveDirection));
+        }
+    }
 
+    public void SliderBallMovement()
+    {
+        if (clickEnable == true)
+        {
+            //SetNoOfBalls();
+            SetLineOff();
+            clickEnable = false;
+            spawnPos.SetActive(false);
+            //Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 moveDirection = spawnPos.transform.up;
+            for (int i = 0; i < noOfBalls; i++)
+            {
+                GameObject ball = Instantiate(ballPrefab, spawnPos.transform.position, Quaternion.identity);
+                // balls[i] = ball;
+                ballList.Add(ball);
+            }
+            StartCoroutine(MoveBall(moveDirection));
         }
     }
 
     IEnumerator MoveBall(Vector2 moveDirection)
     {
-
-
         for (int i = 0; i < noOfBalls; i++)
         {
             Vector2 direction = moveDirection * speed;
-            if (balls[i] != null)
+            if (ballList[i] != null)//
             {
-                Ball balli = balls[i].GetComponent<Ball>();
+                Ball balli = ballList[i].GetComponent<Ball>();//
                 if (balli != null)
                 {
                     balli.VelocityOnClick(direction);
@@ -177,12 +142,9 @@ public class BallManager : MonoBehaviour
                 yield return new WaitForSeconds(delay);
             }
         }
-
-
-
-
     }
 
+  /*============================================= SettingSpawner=======================================*/
 
     public void SetSpawnPosition(GameObject BallObject)
     {
@@ -196,9 +158,10 @@ public class BallManager : MonoBehaviour
 
         else if (detectBall == noOfBalls)
         {
-
+            Board.Instance.MoveGrid();
+            SetNoOfBalls();
             SetUpBalls();
-            ballScore = detectBall;
+            ballScore = noOfBalls;
             SetUpScoreText(ballScore);
             detectBall = 0;
             clickEnable = true;
@@ -206,41 +169,7 @@ public class BallManager : MonoBehaviour
         }
     }
 
-
-
-
-
-    public void SetLineOff()
-    {
-        lineRenderer1.enabled = false;
-        lineRenderer2.enabled = false;
-    }
-
-    public void SetLineOn()
-    {
-        lineRenderer1.enabled = true;
-        lineRenderer2.enabled = true;
-    }
-    public void SetUpBalls()
-    {
-        balls = new GameObject[noOfBalls];
-    }
-    public void SetUpScoreText(int noOfBalls)
-    {
-        TextMesh Text = ballText.GetComponent<TextMesh>();
-        Text.text = "x" + " " + noOfBalls.ToString();
-        ballScore = noOfBalls;
-    }
-    public void SetNoOfBalls()
-    {
-        noOfBalls += addBall;
-        addBall = 0;
-    }
-
-
-
-
-
+/*========================================================== GeneratingAimLine ==================================*/
 
     void GenerateLine()
     {
@@ -273,8 +202,35 @@ public class BallManager : MonoBehaviour
             lineRenderer1.SetPosition(lineRenderer1.positionCount - 1,pt1);
         }
     }
-    
-  
+
+    /*============================================== Additional Functions ===========================*/
+    public void SetLineOff()
+    {
+        lineRenderer1.enabled = false;
+        lineRenderer2.enabled = false;
+    }
+
+    public void SetLineOn()
+    {
+        lineRenderer1.enabled = true;
+        lineRenderer2.enabled = true;
+    }
+    public void SetUpBalls()
+    {
+        //balls = new GameObject[noOfBalls];
+        ballList = new List<GameObject>();
+    }
+    public void SetUpScoreText(int noOfBalls)
+    {
+        TextMesh Text = ballText.GetComponent<TextMesh>();
+        Text.text = "x" + " " + noOfBalls.ToString();
+        ballScore = noOfBalls;
+    }
+    public void SetNoOfBalls()
+    {
+        noOfBalls += addBall;
+        addBall = 0;
+    }
 }
 
 

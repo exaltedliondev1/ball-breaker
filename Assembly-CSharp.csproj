@@ -55,15 +55,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Block.cs" />
-    <Compile Include="Assets\GameArea.cs" />
+    <Compile Include="Assets\Scripts\GameArea.cs" />
     <Compile Include="Assets\Scripts\TrajectoryLine.cs" />
     <Compile Include="Assets\Scripts\BottomBoundry.cs" />
     <Compile Include="Assets\Scripts\BallManager.cs" />
     <Compile Include="Assets\square.cs" />
     <Compile Include="Assets\Scripts\AddBall.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
-    <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\ObjectSlider.cs" />
+    <Compile Include="Assets\Scripts\Ball.cs" />
+    <Compile Include="Assets\FourSider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\HONETi\TexturesThemeCommon\Fonts\OFL.txt" />

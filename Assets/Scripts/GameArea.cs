@@ -2,22 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameArea : MonoBehaviour
 {
-    public bool isHeldDown;
+    public bool isOnArea;
+    public ObjectSlider objectSlider;
 
-   
+
 
     void OnMouseExit()
     {
-        isHeldDown = false;
+        isOnArea = false;
+        objectSlider.SliderActive = true;
         BallManager.Instance.SetLineOff();
     }
     void OnMouseEnter()
     {
-
-        isHeldDown = true;
+        objectSlider.SliderActive = false;
+        isOnArea = true;
     }
 
 
@@ -26,23 +29,23 @@ public class GameArea : MonoBehaviour
 
         
 
-        if(Input.GetMouseButton(0)&& isHeldDown == true)
+        if(Input.GetMouseButton(0)&& isOnArea == true)
         {
 
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             BallManager.Instance.ArrowRotation(heldPosition);
         }
      
-        if(Input.GetMouseButtonUp(0)&& isHeldDown == true)
+        if(Input.GetMouseButtonUp(0)&& isOnArea == true)
         {
             
             BallManager.Instance.BallMovement();
         }
 
+       
+
     }
 }
-
-
 
 
 
