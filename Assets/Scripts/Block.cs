@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Block : MonoBehaviour
 {
+    
     public int maxHealth;
     public int blockHealth;
     public Color[] colors;
