@@ -34,18 +34,32 @@ public class Board : MonoBehaviour
             tiles[i].transform.position = new Vector3(tiles[i].transform.position.x, tiles[i].transform.position.y-0.45f, tiles[i].transform.position.z);
         }
     }
-    int row;
-    int col;
+    //int row;
+    //int col;
     public void DecreseVerticallyHorizontallyHealth(GameObject obj)
     {
         Tile tile = obj.transform.GetComponentInParent<Tile>();
-        this.row = tile.row;
-        this.col = tile.col;
+        int row = tile.row;
+        int col = tile.col;
         DecreaseHealthInRow(row);
         DecreaseHealthInColumn(col);
 
     }
 
+
+    public void DecreaseVerticallyHealth(GameObject obj)
+    {
+        Tile tile = obj.transform.GetComponentInParent<Tile>();
+        int c = tile.col;
+        DecreaseHealthInColumn(c);
+    }
+
+    public void DecreaseHorizontallyHealth(GameObject obj)
+    {
+        Tile tile = obj.transform.GetComponentInParent<Tile>();
+        int r = tile.row;
+        DecreaseHealthInRow(r);
+    }
     public void DecreaseHealthInRow(int row)
     {
         for (int i = 0; i < tiles.Length; i++)

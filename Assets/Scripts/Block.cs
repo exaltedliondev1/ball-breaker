@@ -22,6 +22,13 @@ public class Block : MonoBehaviour
         //borderRenderer.color = borderColors[borderColors.Length - 1];
 
     }
+     void Update()
+    {
+        if (blockHealth <= 0)
+        {
+            Destroy(prefab);
+        }   
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {

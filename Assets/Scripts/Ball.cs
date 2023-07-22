@@ -52,8 +52,12 @@ public class Ball : MonoBehaviour
          
          rigidbody.velocity = direction;       
     }
-   
-   
+
+    public void MoveRandomly(int x)
+    {
+        Debug.Log(rigidbody.velocity);
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x+x, rigidbody.velocity.y+x);
+    }
     
 }
 
