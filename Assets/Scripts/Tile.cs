@@ -6,5 +6,37 @@ public class Tile : MonoBehaviour
 {
     public int row;
     public int col;
+    public GameObject objectPrefab;
+    public bool isfilled;
+    public LevelGenerator levelGenerator;
+    public GameObject childObject;
 
+    private void OnMouseDown()
+    {
+        
+        objectPrefab = levelGenerator.blockPrefab;
+        if (isfilled != true)
+        {
+            childObject = Instantiate(objectPrefab, transform.position, Quaternion.identity);
+            childObject.GetComponent<Collider2D>().enabled = false;
+            childObject.transform.SetParent(transform);
+            isfilled = true;
+        }
+        else if (isfilled == true)
+        {
+            isfilled = false;
+            if (childObject != null)
+            {
+                Debug.Log("Hello");
+                Destroy(childObject);
+            }
+        }
+     
+        
+    }
+
+
+   
+    /*
+*/
 }

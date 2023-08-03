@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Block.cs" />
+    <Compile Include="Assets\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\Horizontal.cs" />
     <Compile Include="Assets\Scripts\GameArea.cs" />
     <Compile Include="Assets\Scripts\TrajectoryLine.cs" />
     <Compile Include="Assets\Scripts\BottomBoundry.cs" />
@@ -67,9 +69,11 @@
     <Compile Include="Assets\RandomR.cs" />
     <Compile Include="Assets\Scripts\FourSider.cs" />
     <Compile Include="Assets\Scripts\Vertical.cs" />
-    <Compile Include="Assets\Scripts\Horizontal.cs" />
+    <Compile Include="Assets\TileObject.cs" />
+    <Compile Include="Assets\Scripts\JsonHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Resources\File.txt" />
     <None Include="Assets\HONETi\TexturesThemeCommon\Fonts\OFL.txt" />
   </ItemGroup>
   <ItemGroup>

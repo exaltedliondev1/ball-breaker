@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Board : MonoBehaviour
 {
     public static Board Instance;
     public Transform[] tiles;
-    public GameObject[] powerUps;
+    //public GameObject[] powerUps;
+    public TileObject[] tileObjects;
 
     private void Awake()
     {
@@ -17,13 +19,32 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < tiles.Length; i++)
+        string filePath = "Assets/Resources/File.txt";
+        StreamReader reader = new StreamReader(filePath);
+        string Objdata = reader.ReadToEnd();
+        reader.Close();
+        tileObjects = JsonHelper.FromJson<TileObject>(Objdata);
+        for (int i = 0; i < tileObjects.Length; i++)
         {
-            int j = Random.Range(0, powerUps.Length);
-            GameObject powObj = Instantiate(powerUps[j], tiles[i].transform.position, Quaternion.identity);
-            powObj.transform.parent = tiles[i];
-             
+            GameObject tileObject = tileObjects[i].childObject;
+            GameObject tilechildren = Instantiate(tileObject, tiles[i].transform.position, Quaternion.identity);
+            tilechildren.transform.parent = tiles[i];
+
         }
+
+
+       // for (int i = 0; i < tiles.Length; i++)
+        //{
+            
+
+
+
+
+            // int j = Random.Range(0, powerUps.Length);
+            //GameObject powObj = Instantiate(powerUps[j], tiles[i].transform.position, Quaternion.identity);
+            //powObj.transform.parent = tiles[i];
+
+        //}
     }
 
 
