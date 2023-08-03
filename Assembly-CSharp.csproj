@@ -55,22 +55,22 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Block.cs" />
-    <Compile Include="Assets\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Horizontal.cs" />
     <Compile Include="Assets\Scripts\GameArea.cs" />
     <Compile Include="Assets\Scripts\TrajectoryLine.cs" />
     <Compile Include="Assets\Scripts\BottomBoundry.cs" />
     <Compile Include="Assets\Scripts\BallManager.cs" />
-    <Compile Include="Assets\square.cs" />
+    <Compile Include="Assets\Scripts\square.cs" />
     <Compile Include="Assets\Scripts\AddBall.cs" />
     <Compile Include="Assets\Scripts\Tile.cs" />
     <Compile Include="Assets\Scripts\ObjectSlider.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
-    <Compile Include="Assets\RandomR.cs" />
+    <Compile Include="Assets\Scripts\JsonHelper.cs" />
+    <Compile Include="Assets\Scripts\RandomR.cs" />
     <Compile Include="Assets\Scripts\FourSider.cs" />
     <Compile Include="Assets\Scripts\Vertical.cs" />
-    <Compile Include="Assets\TileObject.cs" />
-    <Compile Include="Assets\Scripts\JsonHelper.cs" />
+    <Compile Include="Assets\Scripts\TileObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\File.txt" />

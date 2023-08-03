@@ -26,9 +26,9 @@ public class Board : MonoBehaviour
         tileObjects = JsonHelper.FromJson<TileObject>(Objdata);
         for (int i = 0; i < tileObjects.Length; i++)
         {
-            GameObject tileObject = tileObjects[i].childObject;
-            GameObject tilechildren = Instantiate(tileObject, tiles[i].transform.position, Quaternion.identity);
-            tilechildren.transform.parent = tiles[i];
+            //GameObject tileObject = tileObjects[i].childObject;
+          //  GameObject tilechildren = Instantiate(tileObject, tiles[i].transform.position, Quaternion.identity);
+            //tilechildren.transform.parent = tiles[i];
 
         }
 
