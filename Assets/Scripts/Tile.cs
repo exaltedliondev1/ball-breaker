@@ -10,11 +10,13 @@ public class Tile : MonoBehaviour
     public bool isfilled;
     public LevelGenerator levelGenerator;
     public GameObject childObject;
+    public int index;
 
     private void OnMouseDown()
     {
         
         objectPrefab = levelGenerator.blockPrefab;
+        index = levelGenerator.prefabNo;
         if (isfilled != true)
         {
             childObject = Instantiate(objectPrefab, transform.position, Quaternion.identity);

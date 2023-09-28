@@ -157,8 +157,8 @@ public class BallManager : MonoBehaviour
         }
 
         else if (detectBall == noOfBalls)
-        {
-            Board.Instance.MoveGrid();
+        {   
+            Board.Instance.MoveGrid(1);
             SetNoOfBalls();
             SetUpBalls();
             ballScore = noOfBalls;

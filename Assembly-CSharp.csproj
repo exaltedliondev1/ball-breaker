@@ -53,10 +53,12 @@
     <UnityVersion>2020.3.40f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DataManger.cs" />
     <Compile Include="Assets\Scripts\Board.cs" />
     <Compile Include="Assets\Scripts\Block.cs" />
     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
     <Compile Include="Assets\Scripts\Horizontal.cs" />
+    <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\GameArea.cs" />
     <Compile Include="Assets\Scripts\TrajectoryLine.cs" />
     <Compile Include="Assets\Scripts\BottomBoundry.cs" />
@@ -73,8 +75,9 @@
     <Compile Include="Assets\Scripts\TileObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Resources\File.txt" />
+    <None Include="Assets\Resources\File1.txt" />
     <None Include="Assets\HONETi\TexturesThemeCommon\Fonts\OFL.txt" />
+    <None Include="Assets\Resources\File2.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
